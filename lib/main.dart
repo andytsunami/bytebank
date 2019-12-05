@@ -70,43 +70,52 @@ class FormularioTransferencia extends StatelessWidget {
       appBar: AppBar(
         title: Text("Formulario Transferencia"),
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _controladorCampoNumeroConta,
-              style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
-                  labelText: "Número da conta", hintText: "0000"),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _controladorCampoValor,
-              style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
-                  icon: Icon(Icons.monetization_on),
-                  labelText: "Valor",
-                  hintText: "0.00"),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-          RaisedButton(
-            child: Text("Confirmar"),
-            onPressed: () {
-              final int conta = int.tryParse(_controladorCampoNumeroConta.text);
-              final double valor = double.tryParse(_controladorCampoValor.text);
+      body: Builder(
+        builder: (BuildContext ctx){
+          return Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                  controller: _controladorCampoNumeroConta,
+                  style: TextStyle(fontSize: 24.0),
+                  decoration: InputDecoration(
+                      labelText: "Número da conta", hintText: "0000"),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                  controller: _controladorCampoValor,
+                  style: TextStyle(fontSize: 24.0),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.monetization_on),
+                      labelText: "Valor",
+                      hintText: "0.00"),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              RaisedButton(
+                child: Text("Confirmar"),
+                onPressed: () {
+                  final int conta = int.tryParse(_controladorCampoNumeroConta.text);
+                  final double valor = double.tryParse(_controladorCampoValor.text);
 
-              if (valor != null && conta != null) {
-                final transferenciaCriada = Transferencia(valor, conta);
-                debugPrint("$transferenciaCriada");
-              }
-            },
-          )
-        ],
+                  if (valor != null && conta != null) {
+                    final transferenciaCriada = Transferencia(valor, conta);
+                    debugPrint("$transferenciaCriada");
+
+                    Scaffold.of(ctx).showSnackBar(SnackBar(
+                      content: Text("$transferenciaCriada"),
+                    ));
+
+                  }
+                },
+              )
+            ],
+          );
+        },
       ),
     );
   }
