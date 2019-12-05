@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: FormularioTransferencia()));
+void main() => runApp(ByteBankApp());
+
+class ByteBankApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: FormularioTransferencia());
+  }
+
+}
 
 class ListaTransferencia extends StatelessWidget {
   @override
