@@ -74,28 +74,8 @@ class FormularioTransferencia extends StatelessWidget {
         builder: (BuildContext ctx){
           return Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  controller: _controladorCampoNumeroConta,
-                  style: TextStyle(fontSize: 24.0),
-                  decoration: InputDecoration(
-                      labelText: "Número da conta", hintText: "0000"),
-                  keyboardType: TextInputType.number,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  controller: _controladorCampoValor,
-                  style: TextStyle(fontSize: 24.0),
-                  decoration: InputDecoration(
-                      icon: Icon(Icons.monetization_on),
-                      labelText: "Valor",
-                      hintText: "0.00"),
-                  keyboardType: TextInputType.number,
-                ),
-              ),
+              Editor(rotulo: "Numero da conta", dica: "000", controlador: _controladorCampoNumeroConta),
+              Editor(rotulo: "Valor",dica: "0.00", controlador: _controladorCampoValor,icone: Icons.monetization_on),
               RaisedButton(
                 child: Text("Confirmar"),
                 onPressed: () {
@@ -119,4 +99,32 @@ class FormularioTransferencia extends StatelessWidget {
       ),
     );
   }
+}
+
+class Editor extends StatelessWidget{
+
+  final TextEditingController controlador;
+  final String rotulo;
+  final String dica;
+  final IconData icone;
+
+  Editor({this.controlador, this.rotulo, this.dica, this.icone});
+
+  @override
+  Widget build(BuildContext context) {
+   return Padding(
+     padding: const EdgeInsets.all(16.0),
+     child: TextField(
+       controller: this.controlador,
+       style: TextStyle(fontSize: 24.0),
+       decoration: InputDecoration(
+           labelText: rotulo, hintText: dica, icon: icone != null ? Icon(icone) : null),
+       keyboardType: TextInputType.number,
+     ),
+   );
+  }
+
+
+
+
 }
