@@ -78,26 +78,28 @@ class FormularioTransferencia extends StatelessWidget {
               Editor(rotulo: "Valor",dica: "0.00", controlador: _controladorCampoValor,icone: Icons.monetization_on),
               RaisedButton(
                 child: Text("Confirmar"),
-                onPressed: () {
-                  final int conta = int.tryParse(_controladorCampoNumeroConta.text);
-                  final double valor = double.tryParse(_controladorCampoValor.text);
-
-                  if (valor != null && conta != null) {
-                    final transferenciaCriada = Transferencia(valor, conta);
-                    debugPrint("$transferenciaCriada");
-
-                    Scaffold.of(ctx).showSnackBar(SnackBar(
-                      content: Text("$transferenciaCriada"),
-                    ));
-
-                  }
-                },
+                onPressed: () => _criaTransferencia(ctx),
               )
             ],
           );
         },
       ),
     );
+  }
+
+  void _criaTransferencia(BuildContext ctx) {
+    final int conta = int.tryParse(_controladorCampoNumeroConta.text);
+    final double valor = double.tryParse(_controladorCampoValor.text);
+
+    if (valor != null && conta != null) {
+      final transferenciaCriada = Transferencia(valor, conta);
+      debugPrint("$transferenciaCriada");
+
+      Scaffold.of(ctx).showSnackBar(SnackBar(
+        content: Text("$transferenciaCriada"),
+      ));
+
+    }
   }
 }
 
