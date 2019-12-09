@@ -96,15 +96,17 @@ class FormularioTransferencia extends StatelessWidget {
       ),
       body: Builder(
         builder: (BuildContext ctx){
-          return Column(
-            children: <Widget>[
-              Editor(rotulo: "Numero da conta", dica: "000", controlador: _controladorCampoNumeroConta),
-              Editor(rotulo: "Valor",dica: "0.00", controlador: _controladorCampoValor,icone: Icons.monetization_on),
-              RaisedButton(
-                child: Text("Confirmar"),
-                onPressed: () => _criaTransferencia(ctx),
-              )
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Editor(rotulo: "Numero da conta", dica: "000", controlador: _controladorCampoNumeroConta),
+                Editor(rotulo: "Valor",dica: "0.00", controlador: _controladorCampoValor,icone: Icons.monetization_on),
+                RaisedButton(
+                  child: Text("Confirmar"),
+                  onPressed: () => _criaTransferencia(ctx),
+                )
+              ],
+            ),
           );
         },
       ),
