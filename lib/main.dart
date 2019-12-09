@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(ByteBankApp());
@@ -11,25 +10,22 @@ class ByteBankApp extends StatelessWidget {
 }
 
 class ListaTransferencia extends StatelessWidget {
+
+  final List<Transferencia> _transferencias = List();
   @override
   Widget build(BuildContext context) {
+    _transferencias.add(Transferencia(100, 200));
     return Scaffold(
       appBar: AppBar(
         title: Text("Transferencias"),
       ),
-      body: ListView(children: <Widget>[
-        ItemTransferencia(Transferencia(1.000, 1000)),
-        ItemTransferencia(Transferencia(2.000, 1000)),
-        ItemTransferencia(Transferencia(3.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-        ItemTransferencia(Transferencia(4.000, 1000)),
-      ]),
+      body: ListView.builder(
+        itemCount: _transferencias.length,
+        itemBuilder: (context, indice){
+          final transferencia = _transferencias[indice];
+          return ItemTransferencia(transferencia);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
@@ -38,6 +34,7 @@ class ListaTransferencia extends StatelessWidget {
 
           }));
           future.then((transferenciaRecebida){
+            _transferencias.add(transferenciaRecebida);
             debugPrint("Entrou no then???");
             debugPrint("$transferenciaRecebida");
           });
