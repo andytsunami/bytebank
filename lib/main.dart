@@ -5,14 +5,22 @@ void main() => runApp(ByteBankApp());
 class ByteBankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: ListaTransferencia());
+    return MaterialApp(
+      home: ListaTransferencia(),
+      theme: ThemeData(
+        primaryColor: Colors.pink[800],
+        accentColor: Colors.lightBlue[800],
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.blueAccent[800],
+          textTheme: ButtonTextTheme.primary,
+        )
+      )
+    );
   }
 }
 
 class ListaTransferencia extends StatefulWidget {
-
   final List<Transferencia> _transferencias = List();
-
 
   @override
   State<StatefulWidget> createState() {
@@ -20,7 +28,7 @@ class ListaTransferencia extends StatefulWidget {
   }
 }
 
-class ListaTransferenciaState extends State<ListaTransferencia>{
+class ListaTransferenciaState extends State<ListaTransferencia> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,27 +37,25 @@ class ListaTransferenciaState extends State<ListaTransferencia>{
       ),
       body: ListView.builder(
         itemCount: widget._transferencias.length,
-        itemBuilder: (context, indice){
+        itemBuilder: (context, indice) {
           final transferencia = widget._transferencias[indice];
           return ItemTransferencia(transferencia);
         },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: (){
-          final Future future = Navigator.push(context, MaterialPageRoute(builder: (context) {
+        onPressed: () {
+          final Future future =
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
             return FormularioTransferencia();
-
           }));
-          future.then((transferenciaRecebida){
-            if(transferenciaRecebida != null){
-
-              Future.delayed(Duration(seconds: 1), (){
+          future.then((transferenciaRecebida) {
+            if (transferenciaRecebida != null) {
+              Future.delayed(Duration(seconds: 1), () {
                 setState(() {
                   widget._transferencias.add(transferenciaRecebida);
                 });
               });
-
             }
             debugPrint("Entrou no then???");
             debugPrint("$transferenciaRecebida");
@@ -92,15 +98,13 @@ class Transferencia {
 class FormularioTransferencia extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-
     return FormularioTransferenciaState();
   }
 }
 
-class FormularioTransferenciaState extends State{
-
+class FormularioTransferenciaState extends State {
   final TextEditingController _controladorCampoNumeroConta =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController _controladorCampoValor = TextEditingController();
 
   @override
@@ -110,12 +114,19 @@ class FormularioTransferenciaState extends State{
         title: Text("Formulario Transferencia"),
       ),
       body: Builder(
-        builder: (BuildContext ctx){
+        builder: (BuildContext ctx) {
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Editor(rotulo: "Numero da conta", dica: "000", controlador: _controladorCampoNumeroConta),
-                Editor(rotulo: "Valor",dica: "0.00", controlador: _controladorCampoValor,icone: Icons.monetization_on),
+                Editor(
+                    rotulo: "Numero da conta",
+                    dica: "000",
+                    controlador: _controladorCampoNumeroConta),
+                Editor(
+                    rotulo: "Valor",
+                    dica: "0.00",
+                    controlador: _controladorCampoValor,
+                    icone: Icons.monetization_on),
                 RaisedButton(
                   child: Text("Confirmar"),
                   onPressed: () => _criaTransferencia(ctx),
@@ -140,13 +151,11 @@ class FormularioTransferenciaState extends State{
       Scaffold.of(ctx).showSnackBar(SnackBar(
         content: Text("$transferenciaCriada"),
       ));
-
     }
   }
 }
 
-class Editor extends StatelessWidget{
-
+class Editor extends StatelessWidget {
   final TextEditingController controlador;
   final String rotulo;
   final String dica;
@@ -156,21 +165,17 @@ class Editor extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-   return Padding(
-     padding: const EdgeInsets.all(16.0),
-     child: TextField(
-       controller: this.controlador,
-       style: TextStyle(fontSize: 24.0),
-       decoration: InputDecoration(
-           labelText: rotulo, hintText: dica, icon: icone != null ? Icon(icone) : null),
-       keyboardType: TextInputType.number,
-     ),
-   );
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: TextField(
+        controller: this.controlador,
+        style: TextStyle(fontSize: 24.0),
+        decoration: InputDecoration(
+            labelText: rotulo,
+            hintText: dica,
+            icon: icone != null ? Icon(icone) : null),
+        keyboardType: TextInputType.number,
+      ),
+    );
   }
-
-
-
-
 }
-
-
