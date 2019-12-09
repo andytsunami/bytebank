@@ -30,10 +30,14 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          final Future future =
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return FormularioTransferencia();
-          }));
+          final Future future = Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return FormularioTransferencia();
+              },
+            ),
+          );
           future.then(
             (transferenciaRecebida) => _atualiza(transferenciaRecebida),
           );
@@ -44,11 +48,16 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
 
   void _atualiza(transferenciaRecebida) {
     if (transferenciaRecebida != null) {
-      Future.delayed(Duration(seconds: 1), () {
-        setState(() {
-          widget._transferencias.add(transferenciaRecebida);
-        });
-      });
+      Future.delayed(
+        Duration(seconds: 1),
+        () {
+          setState(
+            () {
+              widget._transferencias.add(transferenciaRecebida);
+            },
+          );
+        },
+      );
     }
   }
 }

@@ -33,14 +33,16 @@ class FormularioTransferenciaState extends State {
             child: Column(
               children: <Widget>[
                 Editor(
-                    rotulo: _dicaCampoNumeroConta,
-                    dica: _dicaCampoNumeroConta,
-                    controlador: _controladorCampoNumeroConta),
+                  rotulo: _dicaCampoNumeroConta,
+                  dica: _dicaCampoNumeroConta,
+                  controlador: _controladorCampoNumeroConta,
+                ),
                 Editor(
-                    rotulo: _rotuloCampoValor,
-                    dica: _dicaCampoValor,
-                    controlador: _controladorCampoValor,
-                    icone: Icons.monetization_on),
+                  rotulo: _rotuloCampoValor,
+                  dica: _dicaCampoValor,
+                  controlador: _controladorCampoValor,
+                  icone: Icons.monetization_on,
+                ),
                 RaisedButton(
                   child: Text(_textoBotaoConfirmar),
                   onPressed: () => _criaTransferencia(ctx),

@@ -14,8 +14,8 @@ class ByteBankApp extends StatelessWidget {
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.blueAccent[800],
           textTheme: ButtonTextTheme.primary,
-        )
-      )
+        ),
+      ),
     );
   }
 }
