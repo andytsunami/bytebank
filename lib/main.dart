@@ -83,9 +83,18 @@ class Transferencia {
   }
 }
 
-class FormularioTransferencia extends StatelessWidget {
+class FormularioTransferencia extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+
+    return FormularioTransferenciaState();
+  }
+}
+
+class FormularioTransferenciaState extends State{
+
   final TextEditingController _controladorCampoNumeroConta =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _controladorCampoValor = TextEditingController();
 
   @override
