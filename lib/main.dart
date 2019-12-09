@@ -43,7 +43,13 @@ class ListaTransferenciaState extends State<ListaTransferencia>{
           }));
           future.then((transferenciaRecebida){
             if(transferenciaRecebida != null){
-              widget._transferencias.add(transferenciaRecebida);
+
+              Future.delayed(Duration(seconds: 1), (){
+                setState(() {
+                  widget._transferencias.add(transferenciaRecebida);
+                });
+              });
+
             }
             debugPrint("Entrou no then???");
             debugPrint("$transferenciaRecebida");
