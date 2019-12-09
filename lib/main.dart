@@ -42,7 +42,9 @@ class ListaTransferenciaState extends State<ListaTransferencia>{
 
           }));
           future.then((transferenciaRecebida){
-            widget._transferencias.add(transferenciaRecebida);
+            if(transferenciaRecebida != null){
+              widget._transferencias.add(transferenciaRecebida);
+            }
             debugPrint("Entrou no then???");
             debugPrint("$transferenciaRecebida");
           });
