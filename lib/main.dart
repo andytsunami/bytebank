@@ -17,10 +17,17 @@ class ListaTransferencia extends StatelessWidget {
       appBar: AppBar(
         title: Text("Transferencias"),
       ),
-      body: Column(children: <Widget>[
+      body: ListView(children: <Widget>[
         ItemTransferencia(Transferencia(1.000, 1000)),
         ItemTransferencia(Transferencia(2.000, 1000)),
         ItemTransferencia(Transferencia(3.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
+        ItemTransferencia(Transferencia(4.000, 1000)),
         ItemTransferencia(Transferencia(4.000, 1000)),
       ]),
       floatingActionButton: FloatingActionButton(
