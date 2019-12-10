@@ -1,19 +1,19 @@
-import 'package:bytebank/models/transferencia/transferencia.dart';
+import 'package:bytebank/models/seguro/seguro.dart';
 import 'package:flutter/material.dart';
 import 'formulario.dart';
 
-const _tituloAppBar = "Transferencias";
+const _tituloAppBar = "Seguros";
 
-class ListaTransferencia extends StatefulWidget {
-  final List<Transferencia> _transferencias = List();
+class ListaSeguro extends StatefulWidget {
+  final List<Seguro> _seguros = List();
 
   @override
   State<StatefulWidget> createState() {
-    return ListaTransferenciaState();
+    return ListaSeguroState();
   }
 }
 
-class ListaTransferenciaState extends State<ListaTransferencia> {
+class ListaSeguroState extends State<ListaSeguro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +21,10 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
         title: Text(_tituloAppBar),
       ),
       body: ListView.builder(
-        itemCount: widget._transferencias.length,
+        itemCount: widget._seguros.length,
         itemBuilder: (context, indice) {
-          final transferencia = widget._transferencias[indice];
-          return ItemTransferencia(transferencia);
+          final seguro = widget._seguros[indice];
+          return ItemSeguro(seguro);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -34,7 +34,7 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return FormularioTransferencia();
+                return FormularioSeguro();
               },
             ),
           );
@@ -46,14 +46,14 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
     );
   }
 
-  void _atualiza(transferenciaRecebida) {
-    if (transferenciaRecebida != null) {
+  void _atualiza(seguroRecebido) {
+    if (seguroRecebido != null) {
       Future.delayed(
         Duration(seconds: 1),
         () {
           setState(
             () {
-              widget._transferencias.add(transferenciaRecebida);
+              widget._seguros.add(seguroRecebido);
             },
           );
         },
@@ -62,18 +62,18 @@ class ListaTransferenciaState extends State<ListaTransferencia> {
   }
 }
 
-class ItemTransferencia extends StatelessWidget {
-  final Transferencia _transferencia;
+class ItemSeguro extends StatelessWidget {
+  final Seguro _seguro;
 
-  ItemTransferencia(this._transferencia);
+  ItemSeguro(this._seguro);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
         leading: Icon(Icons.monetization_on),
-        title: Text(_transferencia.valor.toString()),
-        subtitle: Text(_transferencia.conta.toString()),
+        title: Text(_seguro.valor.toString()),
+        subtitle: Text(_seguro.conta.toString()),
       ),
     );
   }

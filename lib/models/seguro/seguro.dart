@@ -1,8 +1,8 @@
-class Transferencia {
+class Seguro {
   final double valor;
   final int conta;
 
-  Transferencia(
+  Seguro(
     this.valor,
     this.conta,
   );

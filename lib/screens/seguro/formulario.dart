@@ -1,22 +1,22 @@
 import 'package:bytebank/components/editor.dart';
-import 'package:bytebank/models/transferencia/transferencia.dart';
+import 'package:bytebank/models/seguro/seguro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const _tituloAppBar = "Formulario Transferencia";
+const _tituloAppBar = "Formulario Seguro";
 const _rotuloCampoValor = "Valor";
 const _dicaCampoValor = "0.00";
 const _dicaCampoNumeroConta = "0000";
 const _textoBotaoConfirmar = "Confirmar";
 
-class FormularioTransferencia extends StatefulWidget {
+class FormularioSeguro extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return FormularioTransferenciaState();
+    return FormularioSeguroState();
   }
 }
 
-class FormularioTransferenciaState extends State {
+class FormularioSeguroState extends State {
   final TextEditingController _controladorCampoNumeroConta =
       TextEditingController();
   final TextEditingController _controladorCampoValor = TextEditingController();
@@ -45,7 +45,7 @@ class FormularioTransferenciaState extends State {
                 ),
                 RaisedButton(
                   child: Text(_textoBotaoConfirmar),
-                  onPressed: () => _criaTransferencia(ctx),
+                  onPressed: () => _criaSeguro(ctx),
                 ),
               ],
             ),
@@ -55,17 +55,17 @@ class FormularioTransferenciaState extends State {
     );
   }
 
-  void _criaTransferencia(BuildContext ctx) {
+  void _criaSeguro(BuildContext ctx) {
     final int conta = int.tryParse(_controladorCampoNumeroConta.text);
     final double valor = double.tryParse(_controladorCampoValor.text);
 
     if (valor != null && conta != null) {
-      final transferenciaCriada = Transferencia(valor, conta);
-      //debugPrint("$transferenciaCriada");
-      Navigator.pop(ctx, transferenciaCriada);
+      final seguroCriado = Seguro(valor, conta);
+      //debugPrint("$seguroCriado");
+      Navigator.pop(ctx, seguroCriado);
       Scaffold.of(ctx).showSnackBar(
         SnackBar(
-          content: Text("$transferenciaCriada"),
+          content: Text("$seguroCriado"),
         ),
       );
     }
